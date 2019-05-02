@@ -47,14 +47,14 @@ namespace SSOService.Data
                         SqlStatusMessage = "Services.sqlService initialized, connection status: " + Connection.State.ToString();
                     }
                 }
-                catch (ConfigurationException ex1) {
-                    SqlStatusMessage = "Services.sqlService, Invalid configuration, " + ex1.Source + ", " + ex1.Message;
+                catch (ConfigurationException configurationException) {
+                    SqlStatusMessage = "Services.sqlService, Invalid configuration, " + configurationException.Source + ", " + configurationException.Message;
                 }
-                catch (SqlException ex2) {
-                    SqlStatusMessage = "Services.sqlService, Invalid connection, " + ex2.Source + ", " + ex2.Message;
+                catch (SqlException sqlException) {
+                    SqlStatusMessage = "Services.sqlService, Invalid connection, " + sqlException.Source + ", " + sqlException.Message;
                 }
-                catch (Exception ex3) {
-                    SqlStatusMessage = "Services.sqlService, " + ex3.Source + ", " + ex3.Message;
+                catch (Exception exception) {
+                    SqlStatusMessage = "Services.sqlService, " + exception.Source + ", " + exception.Message;
                 }
             }
         }
@@ -116,14 +116,14 @@ namespace SSOService.Data
                     }
                     SqlStatusOk = true;
                 }
-                catch (DataException ex1) {
-                    SqlStatusMessage = "Services.sqlService.ExecuteReaders, Invalid data adapter, " + ex1.Source + ", " + ex1.Message;
+                catch (DataException dataException) {
+                    SqlStatusMessage = "Services.sqlService.ExecuteReaders, Invalid data adapter, " + dataException.Source + ", " + dataException.Message;
                 }
-                catch (InvalidOperationException ex2) {
-                    SqlStatusMessage = "Services.sqlService.ExecuteReaders, Invalid data tables, " + ex2.Source + ", " + ex2.Message;
+                catch (InvalidOperationException invalidOperationException) {
+                    SqlStatusMessage = "Services.sqlService.ExecuteReaders, Invalid data tables, " + invalidOperationException.Source + ", " + invalidOperationException.Message;
                 }
-                catch (Exception ex3) {
-                    SqlStatusMessage = "Services.sqlService.ExecuteReaders, " + ex3.Source + ", " + ex3.Message;
+                catch (Exception exception) {
+                    SqlStatusMessage = "Services.sqlService.ExecuteReaders, " + exception.Source + ", " + exception.Message;
                 }
             }
             return sqlDataSet;
