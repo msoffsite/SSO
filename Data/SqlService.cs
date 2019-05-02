@@ -32,7 +32,7 @@ namespace SSOService.Data
 
         public SqlService(string connectionStringName) {
             SqlStatusOk = false;
-            ConnectionStringSettingsCollection connections = System.Configuration.ConfigurationManager.ConnectionStrings;
+            ConnectionStringSettingsCollection connections = ConfigurationManager.ConnectionStrings;
             if (connections == null)
                 SqlStatusMessage = "Services.sqlService, Invalid App.config: SQL Connections section missing or invalid";
             else {
@@ -43,7 +43,7 @@ namespace SSOService.Data
                     else {
                         Connection = new SqlConnection(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString.ToString());
                         Connection.Open();
-                        if (Connection.State == System.Data.ConnectionState.Open) { SqlConnectionOk = true; SqlStatusOk = true; }
+                        if (Connection.State == ConnectionState.Open) { SqlConnectionOk = true; SqlStatusOk = true; }
                         SqlStatusMessage = "Services.sqlService initialized, connection status: " + Connection.State.ToString();
                     }
                 }
@@ -137,7 +137,7 @@ namespace SSOService.Data
                     SqlCommand sqlCommand = BuildCommand(this.SqlParameters.List);
                     sqlCommand.ExecuteNonQuery();
                     for (int i = 0; i < this.SqlParameters.List.Length; i++) {
-                        if (this.SqlParameters.List[i].DbDirection == System.Data.ParameterDirection.InputOutput || this.SqlParameters.List[i].DbDirection == ParameterDirection.Output) {
+                        if (this.SqlParameters.List[i].DbDirection == ParameterDirection.InputOutput || this.SqlParameters.List[i].DbDirection == ParameterDirection.Output) {
                             this.SqlParameters.List[i].DbOutput = sqlCommand.Parameters[this.SqlParameters.List[i].DbName].Value.ToString();
                         }
                     }

@@ -87,7 +87,7 @@ namespace SSOService.Http
                 string target = $"?{Helpers.Names.RelayStateTarget}={HttpContext.Current.Request.Url.AbsoluteUri}";
                 string referrer = (HttpContext.Current.Request.UrlReferrer == null) ? string.Empty : $"&{Helpers.Names.RelayStateReferrer}={HttpContext.Current.Request.UrlReferrer.AbsoluteUri}";
 
-                return $"{redirect}?{Helpers.Names.RelayState}={System.Convert.ToBase64String(Encoding.UTF8.GetBytes($"{redirect}{target}{referrer}"))}";
+                return $"{redirect}?{Helpers.Names.RelayState}={Convert.ToBase64String(Encoding.UTF8.GetBytes($"{redirect}{target}{referrer}"))}";
             }
         }
         private static string RelayStateResponse {

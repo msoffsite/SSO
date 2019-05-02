@@ -80,7 +80,7 @@ namespace SSOService.Models
         }
 
         public static DataTable DataTable(Credential credential) {
-            CredentialSqlDto dtoCredential = CredentialSqlDto.Clone(credential);
+            CredentialSqlDto dtoCredential = Clone(credential);
             DataTable dtoCredentialTable = new DataTable { TableName = credential.GetType().Name };
             List<System.Reflection.PropertyInfo> dtoProperties = new List<System.Reflection.PropertyInfo>(typeof(CredentialSqlDto).GetProperties());
 

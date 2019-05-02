@@ -1619,7 +1619,7 @@ namespace SSOService.Saml
             //Pattern complies with Microsoft Usage Code Analysis CA2202:DoNotDisposeObjectsMultipleTimes; NO nested using statements
             StringWriter stringWriter = new StringWriter();
             try {
-                using (XmlWriter xmlWriter = XmlTextWriter.Create(stringWriter, xmlSettings)) {
+                using (XmlWriter xmlWriter = XmlWriter.Create(stringWriter, xmlSettings)) {
                     XmlSerializer xmlSerializer = new XmlSerializer(samlType.GetType());
                     xmlSerializer.Serialize(xmlWriter, samlType);
                     xmlDocument.LoadXml(stringWriter.ToString());

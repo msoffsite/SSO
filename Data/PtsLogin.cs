@@ -53,7 +53,7 @@ namespace SSOService.Data
             catch (Exception ex) {
                 serviceOk = false;
                 sqlResponse = $"{sqlResponse} {ex.Message}";
-                LocalServiceLog.WriteEntry($"{sqlService.SqlStatusMessage} {sqlResponse}", System.Diagnostics.EventLogEntryType.FailureAudit);
+                LocalServiceLog.WriteEntry($"{sqlService.SqlStatusMessage} {sqlResponse}", EventLogEntryType.FailureAudit);
             }
             finally {
                 if (serviceOk == false)

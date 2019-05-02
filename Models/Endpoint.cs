@@ -91,7 +91,7 @@ namespace SSOService.Models
         }
 
         public static DataTable DataTable(Endpoint endpoint) {
-            EndpointSqlDto dtoEndpoint = EndpointSqlDto.Clone(endpoint);
+            EndpointSqlDto dtoEndpoint = Clone(endpoint);
             DataTable dtoEndpointTable = new DataTable { TableName = endpoint.GetType().Name };
             List<System.Reflection.PropertyInfo> dtoProperties = new List<System.Reflection.PropertyInfo>(typeof(EndpointSqlDto).GetProperties());
 

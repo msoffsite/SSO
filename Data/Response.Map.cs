@@ -100,7 +100,7 @@ namespace SSOService.Data
             {
                 ID = Helper.GuidAsIdString(endpoint.Id),
                 Version = Saml.Names.SAMLVersion,
-                IssueInstant = System.DateTime.UtcNow,
+                IssueInstant = DateTime.UtcNow,
                 Issuer = new NameIDType { Value = endpoint.Id, Format = Saml.Names.SAMLNamesFormatIssuerEntity },
                 Conditions = new ConditionsType
                 {
@@ -141,7 +141,7 @@ namespace SSOService.Data
             {
                 ID = Helper.GuidAsIdString(),
                 Version = Saml.Names.SAMLVersion,
-                IssueInstant = System.DateTime.UtcNow,
+                IssueInstant = DateTime.UtcNow,
                 Destination = endpoint.Requestor,
                 Issuer = new NameIDType { Value = endpoint.Responder, Format = Saml.Names.SAMLNamesFormatIssuerEntity },
                 Status = new StatusType { StatusCode = new StatusCodeType { Value = Saml.Names.SAMLNamesStatusSuccess } },
@@ -159,7 +159,7 @@ namespace SSOService.Data
             {
                 ID = Helper.GuidAsIdString(),
                 Version = Saml.Names.SAMLVersion,
-                IssueInstant = System.DateTime.UtcNow,
+                IssueInstant = DateTime.UtcNow,
                 Issuer = new NameIDType { Value = Saml.Names.SAMLMessageDefaultIssuer, Format = Saml.Names.SAMLNamesFormatBasic },
                 Status = new StatusType { StatusCode = new StatusCodeType { Value = Saml.Names.SAMLNamesStatusFailed }, StatusMessage = statusMessage }
             };
