@@ -41,10 +41,10 @@ namespace SSOService.Data
                     if (connectionString == null)
                         SqlStatusMessage = "Services.sqlService, Invalid App.config: SQL Connection name " + connectionStringName + " missing or invalid";
                     else {
-                        Connection = new SqlConnection(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString.ToString());
+                        Connection = new SqlConnection(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString);
                         Connection.Open();
                         if (Connection.State == ConnectionState.Open) { SqlConnectionOk = true; SqlStatusOk = true; }
-                        SqlStatusMessage = "Services.sqlService initialized, connection status: " + Connection.State.ToString();
+                        SqlStatusMessage = "Services.sqlService initialized, connection status: " + Connection.State;
                     }
                 }
                 catch (ConfigurationException configurationException) {
