@@ -1,0 +1,3 @@
+XmlSerializer s = new XmlSerializer(typeof(Request));System.IO.TextWriter w = new System.IO.StreamWriter(@"C:\Request.xml");s.Serialize(w, new Request());w.Close();
+
+XmlSerializer s = new XmlSerializer(typeof(Request));Request request;System.IO.TextReader r = new System.IO.StreamReader("request.xml");request = (Request)s.Deserialize(r);r.Close();

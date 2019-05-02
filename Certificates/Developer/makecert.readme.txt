@@ -1,0 +1,71 @@
+MAKE CERTIFICATE EXAMPLES...
+
+Create Certificate Authority certificate...
+makecert -n "CN=PTS Test Certificate Authority" 
+         -cy authority 
+         -a sha1 
+         -sv "PTS Test Certificate Authority Private Key.pvk"
+         -r
+         "PTS Test Certificate Authority.cer"
+         
+  -n            : The certificate name. CN stands for Common Name and is the name that 
+                  identifies the certificate. For websites, this is their domain name.
+  -cy authority : Creates a certificate authority certificate
+  -a sha1       : Use the SHA1 algorithm
+  -sv           : The private key to use, or create.
+  -r            : Create a self-signed certificate (so that you are the root of the certificate chain)
+  *.cer         : The filename to export to
+
+Create client certificate signed by certificate authority...
+makecert -n "CN=PTSX509Test.com" 
+         -ic "PTS Test Certificate Authority.cer" 
+         -iv "PTS Test Certificate Authority Private Key.pvk"
+         -a sha1
+         -sky exchange
+         -pe
+         -sr localmachine
+         -ss root
+         "PTSX509Test.cer"
+         
+  -n            : The certificate name. CN stands for Common Name and is the name that 
+                  identifies the certificate. For websites, this is their domain name.
+  -ic           : The certificate to use as the root authority
+  -iv           : The private key of the root authority certificate
+  -a sha1       : Use the SHA1 algorithm
+  -sky exchange : Create a certificate that can do key exchange
+  -pe           : Makes the certificate's private key exportable
+  -sr           : The certificate store location to hold the certificate (currentuser or localmachine)
+  -ss           : The certificate store name. my is the Personal store
+  *.cer         : The filename to export to
+
+Create certificate and private key as files on the hard drive...
+makecert -n "CN=myawesomesite.com" 
+         -ic "My Awesome Certificate Authority.cer" 
+         -iv "My Awesome Certificate Authority Private Key.pvk"
+         -a sha1
+         -sky exchange
+         -pe
+         -sv "myawesomesite.com Private Key.pvk"
+         "myawesomesite.com.cer"
+         
+  -n            : The certificate name. CN stands for Common Name and is the name that 
+                  identifies the certificate. For websites, this is their domain name.
+  -ic           : The certificate to use as the root authority
+  -iv           : The private key of the root authority certificate
+  -a sha1       : Use the SHA1 algorithm
+  -sky exchange : Create a certificate that can do key exchange
+  -pe           : Makes the certificate's private key exportable
+  -sv           : The private key to use, or create.
+  *.cer         : The filename to export to
+
+Combine private key and certificate into PFX file...
+pvk2pfx -pvk "PTSX509Test.com Private PTSX509Test.pvk" 
+        -spc "PTSX509Test.cer" 
+        -pfx "PTSX509Test.pfx" 
+        -pi password
+  
+  -pvk : The PVK file to lock away in the PFX
+  -spc : The certificate to put in the PFX
+  -pfx : The PFX file to create
+  -pi : The password of the private key
+

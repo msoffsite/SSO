@@ -1,0 +1,36 @@
+MakeCert versions...
+Pre Windows 7, v5.131.379.0
+Windows 7, v6.1.7600.16385
+Windows 8, v6.2.9200.20789
+Windows 8.1, v6.3.9600.17298
+Windows 10, v10.0.14393.33, v10.0.16299.15 
+
+v5.131.379.0: Create certificate and private key as files on the hard drive (1024 bit key lenght only)...
+makecert -r -cy authority -sky exchange -pe -a sha1 -n "CN=PTS1X509SAMLTest.com" -sv "PTS1X509SAMLTest.com.pvk" "PTS1X509SAMLTest.com.cer"
+
+v6.2.9200.20789 or higher: Create certificate and private key as files on the hard drive (2048 bit key length)...
+makecert -r -cy authority -sky exchange -pe -len 2048 -a sha1 -n "CN=PTS1X509SAMLTest.com" -sv "PTS1X509SAMLTest.com.pvk" "PTS1X509SAMLTest.com.cer"
+         
+  -r            : Create a self-signed certificate (so that you are the root of the certificate chain)
+  -cy authority : Creates a certificate authority certificate
+  -n            : The certificate name. CN stands for Common Name and is the name that 
+                  identifies the certificate. For websites, this is their domain name.
+  -ic           : The certificate to use as the root authority
+  -iv           : The private key of the root authority certificate
+  -a sha1       : Use the SHA1 algorithm
+  -a sha256       : Use the SHA256 algorithm
+  -sky exchange : Create a certificate that can do key exchange
+  -pe           : Makes the certificate's private key exportable
+  -sv           : The private key to use, or create.
+  *.cer         : The filename to export to
+
+  use password for private key subject
+
+Combine private key and certificate into PFX file...
+pvk2pfx -pvk "PTS1X509SAMLTest.com.pvk" -spc "PTS1X509SAMLTest.com.cer" -pfx "PTS1X509SAMLTest.pfx" -pi password
+  
+  -pvk : The PVK file to lock away in the PFX
+  -spc : The certificate to put in the PFX
+  -pfx : The PFX file to create
+  -pi : The password of the private key
+

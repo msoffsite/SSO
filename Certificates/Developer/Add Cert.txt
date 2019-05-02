@@ -1,0 +1,8 @@
+//Create new X509 store called teststore from the local certificate store.
+X509Store store = new X509Store(StoreName.My, StoreLocation.LocalMachine);
+           
+store.Open(OpenFlags.MaxAllowed);
+X509Certificate2 certificate = new X509Certificate2();
+
+X509Certificate2 certificate1 = new X509Certificate2("c:\\temp\\localhost.cer");
+store.Add(certificate1);

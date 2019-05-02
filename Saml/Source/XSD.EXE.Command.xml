@@ -1,0 +1,10 @@
+<!-- Generate classes for SAML 2.0 Metadata,Protocol,Assertions,Encryption,Signing: XSD.exe /p:XSD.Command.xml -->
+<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/' output='PTS.Saml.Classes'>
+<generateClasses language='CS' namespace='SAML20.Serialization'>
+    <schema>xenc-schema.xsd</schema>
+    <schema>xmldsig-core-schema.xsd</schema>
+    <schema>saml-schema-assertion-2.0.xsd</schema>
+    <schema>saml-schema-metadata-2.0.xsd</schema>
+    <schema>saml-schema-protocol-2.0.xsd</schema>
+</generateClasses>
+</xsd>
